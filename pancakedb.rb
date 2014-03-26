@@ -1,5 +1,4 @@
 class PancakeDB
-  attr_accessor :entries
 
   def initialize(file, delimiter = "|") # Pipe symbol is the default delimiter
     file = File.readlines(file).map! { |item| item.chomp }
@@ -37,7 +36,7 @@ class PancakeDB
 end
 
 class Array
-  def collect_elements(name)
+  def collect_records(name)
     found = self.map { |entry| entry.select { |elem| elem.match(/#{name}/i) } }.reject { |elem| elem.empty? }.flatten
     found.map { |elem| self.assoc elem }.compact
   end
